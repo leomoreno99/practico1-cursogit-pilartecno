@@ -22,8 +22,18 @@ function getCountryByIso3(isoCode){
  * @returns {string}
  */
 function getCountryTranslatedName(isoCode, language){
-    //Complete with your code
+    let country = getCountryByIso3(isoCode)
+    let translations = country.translations
+    // return translations
 
+    for (let lang in translations) {
+        
+            if(lang == language) {
+                return translations[lang]
+            }  
+        
+    }
+    
 
 }
 /**Get an array of all the countries with the specified subregion
@@ -47,12 +57,13 @@ function main() {
         '\n');
     console.log(
         '///// Ejercicio 2 /////\n',
-        getCountryTranslatedName('ARG', 'ja'),
-        '\n');
+        getCountriesBySubregion('South America'),
+        '\n'); 
     console.log(
         '///// Ejercicio 3 /////\n',
-        getCountriesBySubregion('South America'),
+        getCountryTranslatedName('ARG', 'ja'),
         '\n');
+    
 
 }
 

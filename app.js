@@ -1,3 +1,5 @@
+const { CODEBUILD } = require('ci-info');
+const { count } = require('console');
 const countries = require('./countries.json');
 
 /** Get all the data of one single country given the ISO3 code.
@@ -5,7 +7,12 @@ const countries = require('./countries.json');
  * @returns {Object}
  */
 function getCountryByIso3(isoCode){
-    //Complete with your code
+
+    for (let country of countries){
+        if(country.iso3 == isoCode){
+            return country
+        }
+    }
 }
 
 /**
@@ -16,6 +23,8 @@ function getCountryByIso3(isoCode){
  */
 function getCountryTranslatedName(isoCode, language){
     //Complete with your code
+
+
 }
 /**Get an array of all the countries with the specified subregion
  * @param  {string} subregion

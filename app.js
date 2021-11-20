@@ -1,3 +1,5 @@
+const { CODEBUILD } = require('ci-info');
+const { count } = require('console');
 const countries = require('./countries.json');
 
 /** Get all the data of one single country given the ISO3 code.
@@ -5,7 +7,12 @@ const countries = require('./countries.json');
  * @returns {Object}
  */
 function getCountryByIso3(isoCode){
-    //Complete with your code
+
+    for (let country of countries){
+        if(country.iso3 == isoCode){
+            return country
+        }
+    }
 }
 
 /**
@@ -15,14 +22,32 @@ function getCountryByIso3(isoCode){
  * @returns {string}
  */
 function getCountryTranslatedName(isoCode, language){
-    //Complete with your code
+    let country = getCountryByIso3(isoCode)
+    let translations = country.translations
+    // return translations
+
+    for (let lang in translations) {
+        
+            if(lang == language) {
+                return translations[lang]
+            }  
+        
+    }
+    
+
 }
 /**Get an array of all the countries with the specified subregion
  * @param  {string} subregion
  * @returns {Array}
  */
 function getCountriesBySubregion(subregion){
-    //Complete with your code
+    let countriesBySubregion = []
+    for (let country of countries){
+        if(country.subregion == subregion){
+            countriesBySubregion.push(country)
+        }
+    }
+    return countriesBySubregion
 }
 
 function main() {
@@ -32,12 +57,13 @@ function main() {
         '\n');
     console.log(
         '///// Ejercicio 2 /////\n',
-        getCountryTranslatedName('ARG', 'ja'),
-        '\n');
+        getCountriesBySubregion('South America'),
+        '\n'); 
     console.log(
         '///// Ejercicio 3 /////\n',
-        getCountriesBySubregion('South America'),
+        getCountryTranslatedName('ARG', 'ja'),
         '\n');
+    
 
 }
 
